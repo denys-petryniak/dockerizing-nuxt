@@ -4,33 +4,43 @@
 # For more help, visit the .dockerignore file reference guide at
 # https://docs.docker.com/go/build-context-dockerignore/
 
-**/.classpath
-**/.dockerignore
-**/.env
-**/.git
-**/.gitignore
-**/.project
-**/.settings
-**/.toolstarget
-**/.vs
-**/.vscode
-**/.next
-**/.nuxt
-**/.output
-**/.cache
-**/*.*proj.user
-**/*.dbmdl
-**/*.jfm
-**/charts
-**/docker-compose*
-**/compose.y*ml
-**/Dockerfile*
-**/node_modules
-**/npm-debug.log
-**/obj
-**/secrets.dev.yaml
-**/values.dev.yaml
-**/build
-**/dist
+# Node.js-related files
+node_modules
+npm-debug.log
+pnpm-debug.log
+yarn-error.log
+
+# Nuxt build and cache files
+.nuxt
+.output
+.cache
+dist
+build
+
+# Environment and config files
+.env
+.env.* 
+secrets.*.yaml
+values.*.yaml
+
+# IDE/editor-related files
+.vscode
+.idea
+*.sublime-workspace
+
+# Git-related files
+.git
+.gitignore
+
+# Docker-related files
+docker-compose*
+compose.y*ml
+Dockerfile*
+
+# Miscellaneous system/project files
+*.log
+.DS_Store
+Thumbs.db
 LICENSE
 README.md
+
