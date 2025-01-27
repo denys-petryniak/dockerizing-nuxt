@@ -1,75 +1,127 @@
-# Nuxt Minimal Starter
+# Docker Setup for Nuxt 3 Project
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+This project includes Docker configurations for both development and production environments using `Dockerfile`, `Dockerfile.dev`, `docker-compose.yml`, and `docker-compose.dev.yml`.
 
-## Setup
+## Prerequisites
 
-Make sure to install dependencies:
+Ensure you have the following installed:
 
-```bash
-# npm
-npm install
+- [Docker](https://www.docker.com/get-started)
+- [Docker Compose](https://docs.docker.com/compose/install/)
+- [OrbStack](https://orbstack.dev/) (optional, as a supercharged alternative to Docker Desktop and WSL)
 
-# pnpm
-pnpm install
+---
 
-# yarn
-yarn install
+## Development Setup
 
-# bun
-bun install
-```
+For local development, use `docker-compose.dev.yml` to set up the environment with hot reload enabled.
 
-## Development Server
-
-Start the development server on `http://localhost:3000`:
+### Run Development Environment
 
 ```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
+docker compose -f docker-compose.dev.yml up --build
 ```
 
-## Production
+### Explanation:
 
-Build the application for production:
+- `-f docker-compose.dev.yml` - Specifies the development Docker Compose file.
+- `--build` - Ensures the image is rebuilt with the latest changes.
+
+### Development Features:
+
+- **Hot Reloading** – Changes to source files will automatically reflect inside the container.
+- **Mounted Volumes** – Your local files are synced with the container.
+- **Port Forwarding** – Access the app at `http://localhost:3000`.
+
+---
+
+## Production Setup
+
+For production, use the standard `docker-compose.yml` with an optimized build for deployment.
+
+### Build and Run Production Container
 
 ```bash
-# npm
-npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
+docker compose up --build -d
 ```
 
-Locally preview production build:
+### Explanation:
+
+- `up` - Starts the production container.
+- `--build` - Builds the production image.
+- `-d` - Runs the container in detached mode.
+
+### Production Features:
+
+- **Optimized Image** – Smaller and more efficient build.
+- **No Development Dependencies** – Only necessary files are included.
+- **Environment Variables** – Configurable via `.env` file.
+
+---
+
+## File Structure Overview
+
+- **Dockerfile** - Production build setup.
+- **Dockerfile.dev** - Development setup with hot reloading.
+- **docker-compose.yml** - Production service definitions.
+- **docker-compose.dev.yml** - Development service definitions.
+- **.dockerignore** - Excludes unnecessary files from being copied into the container.
+
+---
+
+## Stopping Containers
+
+To stop the running containers:
 
 ```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
+docker compose down
 ```
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+For the development environment:
+
+```bash
+docker compose -f docker-compose.dev.yml down
+```
+
+---
+
+## Cleaning Up
+
+To remove all containers and volumes:
+
+```bash
+docker compose down --volumes
+```
+
+To remove unused images:
+
+```bash
+docker image prune -a
+```
+
+---
+
+## Troubleshooting
+
+### Common Issues and Solutions
+
+1. **File changes not triggering hot reload**
+   - Ensure `CHOKIDAR_USEPOLLING=true` is set in your `docker-compose.dev.yml`.
+
+2. **Port already in use errors**
+   - Run `docker ps` to check for running containers and stop conflicting ones.
+
+3. **Permission issues with mounted volumes**
+   - Ensure the correct file permissions are set on your local system.
+
+---
+
+## Additional Resources
+
+For further reading and best practices, check out the following resources:
+
+1. [Running Nuxt 3 in a Docker Container](https://markus.oberlehner.net/blog/running-nuxt-3-in-a-docker-container/)
+2. [Dockerizing a Nuxt App](https://mokkapps.de/blog/dockerizing-a-nuxt-app)
+3. [OrbStack - A Faster Alternative to Docker Desktop](https://orbstack.dev/)
+
+For any additional questions, refer to the official [Docker documentation](https://docs.docker.com/).
