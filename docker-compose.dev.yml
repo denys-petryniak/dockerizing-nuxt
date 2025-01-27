@@ -1,0 +1,15 @@
+volumes:
+  node_modules:
+services:
+  web-dev:
+    build:
+      context: .
+      dockerfile: ./Dockerfile.dev
+    ports:
+      - "3000:3000" # Expose the app on port 3000
+      # - "24678:24678" # Allow Vite to perform HMR
+    volumes:
+      - .:/app # Mount your code into the correct working directory
+      - node_modules:/app/node_modules # Prevent overwriting of node_modules
+    environment:
+      - NODE_ENV=development

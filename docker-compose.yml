@@ -1,5 +1,8 @@
 services:
-  web:
-    build: .
+  web-prod:
+    build: 
+      context: .
     ports:
       - "3000:3000" # Expose the app on port 3000
+    environment:
+      - NODE_ENV=production
