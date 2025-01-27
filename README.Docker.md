@@ -8,6 +8,7 @@ Ensure you have the following installed:
 
 - [Docker](https://www.docker.com/get-started)
 - [Docker Compose](https://docs.docker.com/compose/install/)
+- [OrbStack](https://orbstack.dev/) (optional, as a supercharged alternative to Docker Desktop and WSL)
 
 ---
 
@@ -121,5 +122,6 @@ For further reading and best practices, check out the following resources:
 
 1. [Running Nuxt 3 in a Docker Container](https://markus.oberlehner.net/blog/running-nuxt-3-in-a-docker-container/)
 2. [Dockerizing a Nuxt App](https://mokkapps.de/blog/dockerizing-a-nuxt-app)
+3. [OrbStack - A Faster Alternative to Docker Desktop](https://orbstack.dev/)
 
 For any additional questions, refer to the official [Docker documentation](https://docs.docker.com/).
